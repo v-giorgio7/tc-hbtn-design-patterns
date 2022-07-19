@@ -4,7 +4,7 @@ public class BebidaDecorator extends Bebida {
 
     // DECORATOR
 
-    protected Bebida bebidaDecorada;
+    private Bebida bebidaDecorada;
 
     public BebidaDecorator(Bebida bebidaDecorada) {
         this.bebidaDecorada = bebidaDecorada;
