@@ -26,14 +26,14 @@ public class Pedido {
         List<String> itensForaCaixaDetails = new ArrayList<>();
         itensDentroCaixa
                 .forEach(item -> itensDentroCaixaDetails
-                        .add(String.format("- %s %s\n", item.getTipoItemPedido(), item.getNome())));
+                        .add(String.format("\t\t- %s %s\n", item.getTipoItemPedido(), item.getNome())));
         itensForaCaixa
                 .forEach(item -> itensForaCaixaDetails
-                        .add(String.format("- %s %s\n", item.getTipoItemPedido(), item.getNome())));
+                        .add(String.format("\t\t- %s %s\n", item.getTipoItemPedido(), item.getNome())));
 
-        return "Fora da caixa:\n"
+        return "\tFora da caixa:\n"
                 + String.join("", itensForaCaixaDetails)
-                + "Dentro da caixa:\n"
+                + "\tDentro da caixa:\n"
                 + String.join("", itensDentroCaixaDetails);
     }
 }
