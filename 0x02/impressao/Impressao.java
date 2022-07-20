@@ -6,18 +6,16 @@ public class Impressao {
     private int paginasColoridas;
     private int paginasPretoEBranco;
     private boolean ehFrenteVerso;
-    private TamanhoImpressao tamanho;
-    private Map<TamanhoImpressao, Double> valorPretoBrancoFrenteApenas = new HashMap<>();
-    private Map<TamanhoImpressao, Double> valorPretoBrancoFrenteVerso = new HashMap<>();
-    private Map<TamanhoImpressao, Double> valorColoridasFrenteApenas = new HashMap<>();
-    private Map<TamanhoImpressao, Double> valorColoridasFrenteVerso = new HashMap<>();
+    private double valorColoridasFrenteVerso;
+    private double valorPretoBrancoFrenteVerso;
+    private double valorColoridasFrenteApenas;
+    private double valorPretoBrancoFrenteApenas;
 
     public Impressao(TamanhoImpressao tamanho, int paginasTotais, int paginasColoridas, boolean ehFrenteVerso){
-        this.tamanho = tamanho;
-        valorPretoBrancoFrenteApenas.put(tamanho, tamanho.getValorUmLadoPretoEBranco());
-        valorPretoBrancoFrenteVerso.put(tamanho, tamanho.getValorFrenteEVersoPretoEBranco());
-        valorColoridasFrenteApenas.put(tamanho, tamanho.getValorUmLadoColorida());
-        valorColoridasFrenteVerso.put(tamanho, tamanho.getValorFrenteEVersoColorida());
+        this.valorPretoBrancoFrenteApenas = tamanho.getValorUmLadoPretoEBranco();
+        this.valorPretoBrancoFrenteVerso = tamanho.getValorFrenteEVersoPretoEBranco();
+        this.valorColoridasFrenteApenas = tamanho.getValorUmLadoColorida();
+        this.valorColoridasFrenteVerso = tamanho.getValorFrenteEVersoColorida();
         this.paginasTotais = paginasTotais;
         this.paginasColoridas = paginasColoridas;
         this.paginasPretoEBranco = paginasTotais - paginasColoridas;
@@ -29,11 +27,11 @@ public class Impressao {
         Double totalColorida = 0.0;
 
         if (this.ehFrenteVerso) {
-            totalPretoEBranco = this.paginasPretoEBranco * valorPretoBrancoFrenteVerso.get(tamanho);
-            totalColorida = this.paginasColoridas * valorColoridasFrenteVerso.get(tamanho);
+            totalPretoEBranco = this.paginasPretoEBranco * this.valorPretoBrancoFrenteVerso;
+            totalColorida = this.paginasColoridas * this.valorColoridasFrenteVerso;
         } else {
-            totalPretoEBranco = this.paginasPretoEBranco * valorPretoBrancoFrenteApenas.get(tamanho);
-            totalColorida = this.paginasColoridas * valorColoridasFrenteApenas.get(tamanho);
+            totalPretoEBranco = this.paginasPretoEBranco * this.valorPretoBrancoFrenteApenas;
+            totalColorida = this.paginasColoridas * this.valorColoridasFrenteApenas;
         }
 
         return totalPretoEBranco + totalColorida;
@@ -42,11 +40,11 @@ public class Impressao {
     @Override
     public String toString() {
         return String.format("total de paginas: %d, total coloridas: %d, " +
-                "total preto e branco: %d, %b. total: R$ %.2f",
+                "total preto e branco: %d, %s. total: R$ %.2f",
                 this.paginasTotais,
                 this.paginasColoridas,
                 this.paginasPretoEBranco,
-                this.ehFrenteVerso,
+                this.ehFrenteVerso ? "frente e verso" : "frente apenas",
                 this.calcularTotal());
     }
 }
