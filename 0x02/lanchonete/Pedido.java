@@ -31,9 +31,9 @@ public class Pedido {
                 .forEach(item -> itensForaCaixaDetails
                         .add(String.format("\t\t- %s %s\n", item.getTipoItemPedido(), item.getNome())));
 
-        return "\tFora da caixa:\n"
+        return "\tFora da Caixa:\n"
                 + String.join("", itensForaCaixaDetails)
-                + "\tDentro da caixa:\n"
+                + "\tDentro da Caixa:\n"
                 + String.join("", itensDentroCaixaDetails);
     }
 }
