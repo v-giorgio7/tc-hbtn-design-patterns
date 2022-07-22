@@ -1,0 +1,12 @@
+A Arquitetura Hexagonal, criada por Alistair Cockburn, tem como proposta desenvolver um padrão de sistema que torne a aplicação o mais reutilizável, desacoplada, coesa e independente de tecnologia possível. Isso se dá por princípios de SOLID, principalmente o IoC (Inversão de Controle).
+
+Ela divide o sistema em dois grandes grupos:
+
+- Classes de Domínio, relacionadas às regras de negócio do sistema
+- Classes responsáveis pela integração com sistemas externos, como SGBD
+
+A comunicação entre as classes deve ser mediada por adaptadores (design pattern), que favorecem a independência de tecnologia utilizada.
+
+Apesar de parecida com a Clean Architecture, a Arquitetura Hexagonal é de mais alto nível. Há uma delimitação bem clara, nesse caso, de portas de entrada e saída e de adaptadores que conectam o core da aplicação com o mundo externo. Aqui, existe um fluxo claro: adaptadores de entrada → centro da aplicação →adaptadores de saída (e depois o caminho inverso)
+
+A arquitetura hexagonal é muito útil justamente para facilitar a manutenção a longo prazo, principalmente para casos de troca de tecnologia, por exemplo. Mas para projetos que não têm essa característica, não é tão válido gerar esse custo de desenvolvimento.
